@@ -1,0 +1,3 @@
+glances:
+  pkg:
+    - installed
