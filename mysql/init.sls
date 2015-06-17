@@ -15,6 +15,7 @@ mysqld:
     - user: root
     - group: root 
     - mode: 755
+    - makedirs: True
   cmd.run:
     - shell: /bin/bash
     - cwd: /opt/script 
