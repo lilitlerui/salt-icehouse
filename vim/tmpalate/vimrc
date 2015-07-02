@@ -1,2 +1,0 @@
-ip =  {{ grains['ipv4'] }}
-ip = {{ pillar['ip_mysql'] }}

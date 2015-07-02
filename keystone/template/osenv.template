@@ -1,7 +1,0 @@
-export SERVICE_TOKEN=admin
-export OS_USERNAME=admin
-export OS_TENANT_NAME=admin
-export OS_PASSWORD=admin
-export OS_AUTH_URL=http://{{ pillar['ip_keystone'] }}:5000/v2.0/
-export SERVICE_ENDPOINT="http://{{ pillar['ip_keystone'] }}:35357/v2.0"
-
