@@ -1,0 +1,6 @@
+#!/bin/bash
+name=`hostname | awk -F. '{print $1}'`
+grep "127.0.0.1.*${name}" /etc/hosts && echo "hosts file is OK" || sed /127.0.0.1/"s/$/ ${name}/g" /etc/hosts
+rabbitmqctl change_password guest openstack
+rabbitmqctl set_permissions -p / guest ".*" ".*" ".*"
+chkconfig --level 35 rabbitmq-server on 

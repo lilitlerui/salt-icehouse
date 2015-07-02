@@ -1,0 +1,16 @@
+[DEFAULT]
+bind_host = {{ pillar['ip_glance'] }}
+bind_port = 9191
+backlog = 4096
+sql_connection=mysql://glance:glance@{{ pillar['ip_mysql'] }}/glance
+sql_idle_timeout = 3600
+api_limit_max = 1000
+limit_param_default = 25
+[keystone_authtoken]
+auth_host={{ pillar['ip_keystone'] }}
+auth_port=35357
+auth_protocol=http
+admin_tenant_name=service
+admin_user=glance
+admin_password=service_pass
+[paste_deploy]

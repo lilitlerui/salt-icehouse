@@ -1,0 +1,23 @@
+[DEFAULT]
+quota_volumes=-1
+quota_snapshots=-1
+quota_gigabytes=-1
+osapi_volume_listen = {{ pillar['ip_cinder'] }}
+backup_driver=cinder.backup.drivers.ceph
+my_ip={{ pillar['ip_cinder'] }}
+glance_host=$my_ip
+glance_port=9292
+glance_api_version=1
+auth_strategy=noauth
+sql_connection=mysql://cinder:cinder@{{ pillar['ip_mysql'] }}/cinder
+debug=true
+notification_driver=cinder.openstack.common.notifier.rpc_notifier
+default_notification_level=INFO
+notification_topics=cinder_notifications
+rpc_backend=cinder.openstack.common.rpc.impl_kombu
+control_exchange=cinder
+rabbit_host={{ pillar['ip_rabbitmq'] }}
+rabbit_userid=guest
+rabbit_password=openstack
+rbd_pool={{ pillar['cinder_rbd_name'] }}
+volume_driver=cinder.volume.drivers.rbd.RBDDriver

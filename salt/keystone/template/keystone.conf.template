@@ -1,0 +1,37 @@
+[DEFAULT]
+admin_token = admin
+bind_host = {{ pillar['ip_keystone'] }}
+public_port = 5000
+admin_port = 35357
+compute_port = 8774
+debug = True
+verbose = True
+log_file = /var/log/keystone/keystone.log
+log_dir = /var/log/keystone
+control_exchange = openstack
+[sql]
+connection = mysql://keystone:keystone@{{ pillar['ip_mysql'] }}/keystone
+[identity]
+[credential]
+[trust]
+[os_inherit]
+[catalog]
+driver = keystone.catalog.backends.sql.Catalog
+[endpoint_filter]
+[token]
+driver = keystone.token.backends.sql.Token
+[cache]
+[policy]
+[ec2]
+[assignment]
+[oauth1]
+[ssl]
+[signing]
+token_format = UUID
+[ldap]
+[auth]
+methods = external,password,token,oauth1
+password = keystone.auth.plugins.password.Password
+token = keystone.auth.plugins.token.Token
+oauth1 = keystone.auth.plugins.oauth1.OAuth
+[paste_deploy]
