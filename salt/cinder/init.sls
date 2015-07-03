@@ -1,4 +1,7 @@
 /etc/cinder/cinder.conf:
+  cmd.run:
+    - name: /bin/mv /etc/cinder/cinder.conf /etc/cinder/cinder.conf.`date +%s`
+    - user: root
   file.managed:
     - source: salt://cinder/template/cinder.conf.template
     - user: cinder
@@ -7,8 +10,19 @@
     - template: jinja
 
 /etc/cinder/api-paste.ini:
+  cmd.run:
+    - name: /bin/mv /etc/cinder/api-paste.ini /etc/cinder/api-paste.ini.`date +%s`
+    - user: root
   file.managed:
     - source: salt://cinder/template/api-paste.ini.template
+    - user: cinder
+    - group: cinder
+    - mode: 644
+    - template: jinja
+
+/etc/cinder/volume.filters:
+  file.managed:
+    - source: salt://cinder/template/volume.filters.template
     - user: cinder
     - group: cinder
     - mode: 644

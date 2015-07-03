@@ -1,8 +1,7 @@
 /etc/keystone/keystone.conf:
   cmd.run:
-    - name: /bin/mv /etc/keystone/keystone.conf /etc/keystone/keytone.conf.`date +%s`
+    - name: /bin/mv /etc/keystone/keystone.conf /etc/keystone/keystone.conf.`date +%s`
     - user: root
-    
   file.managed:
     - source: salt://keystone/template/keystone.conf.template
     - user: keystone

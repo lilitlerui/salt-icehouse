@@ -36,14 +36,13 @@
     - mode: 640
     - template: jinja
 
-change_glance_owner:
-  cmd.run:
-    - name: /bin/chown -R glance.glance /etc/glance/
-    - require:
-      - file: /etc/glance/glance-registry.conf
-      - file: /etc/glance/glance-api.conf
-      - file: /etc/glance/glance-api-paste.ini
-      - file: /etc/glance/glance-registry-paste.ini
+{% for srv in ['api','registry'] %}
+/var/log/glance/{{srv}}.log:
+  file.managed:
+    - user: glance
+    - group: glance
+    - mode: 644
+{% endfor %}
 
 glance-db-sync:
   cmd.run:
@@ -55,12 +54,6 @@ glance-db-sync:
       - file: /etc/glance/glance-api-paste.ini
       - file: /etc/glance/glance-registry-paste.ini
 
-change_glance_log_owner:
-  cmd.run:
-    - name: /bin/chown -R glance.glance /var/log/glance/
-    - require:
-      - cmd: glance-db-sync
-
 openstack-glance:
   service.running:
     - names:
@@ -71,5 +64,3 @@ openstack-glance:
       - file: /etc/glance/glance-registry.conf
     - require:
       - cmd: glance-db-sync
-      - cmd: change_glance_log_owner
-
