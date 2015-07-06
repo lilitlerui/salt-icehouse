@@ -1,3 +1,6 @@
+#-------------base--------------
+debug: True
+verbose: True
 #-------------ip----------------
 ip_mysql: 10.111.133.66
 ip_rabbitmq: 10.111.133.66
@@ -18,7 +21,7 @@ nova_rbd_name: volumes
 
 #------------vm network-----------
 vm_nic: eth1
-neutron_type: vlan
+network_type: vlan
 
 #------------authorized-----------
 tenant_name: service 
@@ -28,7 +31,7 @@ tenant_user_cinder: cinder
 tenant_user_glance: glance
 tenant_pass_nova: service_pass
 tenant_pass_glance: service_pass
-tenant_pass_neutron_: service_pass
+tenant_pass_neutron: service_pass
 tenant_pass_cinder: service_pass
 #----
 mysql_keystoen_dbname: keystone
